@@ -7,7 +7,7 @@ function ZipResponse(props) {
     }
 
     if(props.responseData.cod === '400' || props.responseData.cod === '404') {
-        setTimeout(function() { props.clearResponse();}, 5000);
+        setTimeout(function() { props.clearResponse();}, 20000);
         return (
             <div className="col-sm-8">
                 <div className="text-danger">{ props.responseData.message }</div>

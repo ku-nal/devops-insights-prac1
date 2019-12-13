@@ -1,4 +1,3 @@
-const sass = require('node-sass');
 
 module.exports = function(grunt) {
 
@@ -33,17 +32,6 @@ module.exports = function(grunt) {
                     quite: true,
                 },
                 src: ['tests/client/report.spec.js']
-            },
-            'saucelab-fvt': {
-                options: {
-                    reporter: 'json',
-                    clearRequireCache: true,
-                    colors: true,
-                    quite: false,
-                    timeout: 60000,
-                    captureFile: 'saucelabfvt.json'
-                },
-                src: ['tests/saucelab/*.js']
             },
             'fvt': {
                 options: {
@@ -107,100 +95,16 @@ module.exports = function(grunt) {
                 dir: 'tests/coverage/reports'
             }
         },
-
-        sass: {
-            options: {
-                implementation: sass,
-                outputStyle: 'expanded'
-            },
-            dist: {
-                files: {
-                    'static/built/css/default.css': 'static/sass/default.scss'
-                }
-            }
-        },
-
-        watch: {
-            sass: {
-                files: ['static/sass/*.scss'],
-                tasks: ['sass:dist']
-            },
-        },
-
-        availabletasks: {
-            tasks: {
-                options: {
-                    filter: 'include',
-                    tasks: ['dev-setup'],
-                    groups: {
-                        'Dev build tasks': ['dev-setup']
-                    },
-                    descriptions: {
-                        'dev-setup': 'Install necessary npm modules and project code into the ./dist directory. (Only needed once per branch unless you are changing runtime node dependencies.',
-                    }
-                }
-            }
-        },
-
-        jshint: {
-            options: {
-                // options here to override JSHint defaults
-                globals: {
-                    jQuery: true,
-                    console: true,
-                    module: true,
-                    document: true
-                },
-            },
-            browser: {
-                files: {
-                    src: ['static/**/*.js', '!static/js/date.js']
-                }
-            },
-            server: {
-                files: {
-                    src: ['routes/**/*.js', 'app.js']
-                }
-            }
-        },
-
-        simplemocha: {
-            sauce: {
-                options: {
-                    timeout: 60000,
-                    reporter: 'spec'
-                },
-                src: ['tests/sauce/**/*-specs.js']
-            }
-        },
-
-        karma: {
-            options: {
-                // point all tasks to karma config file
-                configFile: 'tests/client/config/karma.conf.js'
-            },
-            unit: {
-                // run tests once instead of continuously
-                singleRun: true
-            }
-        },
-
     });
 
-    grunt.loadNpmTasks('grunt-sass');
-    grunt.loadNpmTasks('grunt-available-tasks');
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-istanbul');
 
     grunt.renameTask('makeReport', 'makeReport-lcov');
     grunt.loadNpmTasks('grunt-istanbul');
 
-    grunt.registerTask('default', ['availabletasks']);
-    grunt.registerTask('dev-lint', ['jshint:browser', 'jshint:server']);
-    grunt.registerTask('dev-setup', ['sass:dist', 'jshint:browser']);
     grunt.registerTask('fvt-test', ['mochaTest:fvt']);
     grunt.registerTask('dev-test', ['clean:coverage', 'copy:resourcesForInstrumented', 'instrument', 'mochaTest:server-side-spec']);
     grunt.registerTask('dev-test-cov', ['clean:coverage', 'copy:resourcesForInstrumented', 'instrument', 'mochaTest:server-side', 'storeCoverage', 'makeReport-lcov', 'makeReport']);
