@@ -1,0 +1,9 @@
+applications:
+- disk_quota: 1024M
+  name: demodoi
+  command: npx serve -s build
+  path: .
+  instances: 1
+  memory: 64M
+  env:
+    DIFF_ENV: testing

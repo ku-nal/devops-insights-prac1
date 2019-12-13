@@ -30,5 +30,24 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "grunt": "^1.0.4",
+    "node-sass": "^4.12.0",
+    "grunt-available-tasks": "^0.6.2",
+    "grunt-bower-installer": "^0.3.6",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-istanbul": "^0.7.0",
+    "grunt-mocha-test": "^0.12.7",
+    "grunt-sass": "^3.0.2",
+    "mocha": "^2.3.3",
+    "rewire": "^2.3.4",
+    "saucelabs": "^1.0.1",
+    "selenium-webdriver": "2.44.0",
+    "sinon": "^1.17.7",
+    "supertest": "^1.1.0"
   }
 }
