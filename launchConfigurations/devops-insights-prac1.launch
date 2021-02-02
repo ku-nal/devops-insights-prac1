@@ -1,0 +1,25 @@
+{
+	"Params": {
+		"DevMode": {
+			"Instrumentation": {
+				"command": "",
+				"env": {
+					"BLUEMIX_APP_MGMT_ENABLE": "devconsole",
+					"NODE_ENV": "development"
+				},
+				"memory": "384M"
+			},
+			"Packager": "com.ibm.perfectstorm.cloudoe.packager.LiveEditDeploymentPackager"
+		},
+		"Name": "devops-insights-prac1",
+		"Target": {
+			"Url": "https://api.eu-gb.cf.cloud.ibm.com",
+			"Org": "kunalmakwana18@gnu.ac.in",
+			"Space": "dev"
+		},
+		"Timeout": 60
+	},
+	"Path": "",
+	"ServiceId": "com.ibm.cloudoe.orion.client.deploy",
+	"Type": "Cloud Foundry"
+}
